@@ -1,62 +1,68 @@
-import { Code, Database, Globe, Server } from "lucide-react";
-
+import {
+  NextJsIcon,
+  PrismaIcon,
+  ReactIcon,
+  TypeScriptIcon,
+} from "@/components/icons";
 const tools = [
   {
+    name: "Next Js Framework",
+    icon: <NextJsIcon size={26} />,
+    url: "https://www.python.org",
+  },
+  {
     name: "React Js Library",
-    icon: <Code size={16} className="text-blue-400" />,
+    icon: <ReactIcon className="animate-spin" />,
     url: "https://react.dev/",
   },
   {
-    name: "Javascript language",
-    icon: <Server size={16} className="text-green-400" />,
-    url: "https://react.dev/",
+    name: "Prisma  ORM",
+    icon: <PrismaIcon size={27} />,
+    url: "https://www.prisma.io/",
   },
+
   {
     name: "Typescript Language",
-    icon: <Database size={16} className="text-green-600" />,
+    icon: <TypeScriptIcon size={20} />,
     url: "https://www.typescriptlang.org/",
-  },
-  {
-    name: "Next.js Framework",
-    icon: <Globe size={16} className="text-white" />,
-    url: "https://nextjs.org/",
   },
 ];
 
 const certificates = [
   {
-    name: "Web Development Bootcamp",
-    url: "https://example.com/cert1",
+    name: "Backend Development",
+    url: "https://www.freecodecamp.org/certification/_elisa_/back-end-development-and-apis",
+  },
+
+  {
+    name: "Javascript Algorithms",
+    url: "https://www.freecodecamp.org/certification/_elisa_/javascript-algorithms-and-data-structures-v8",
   },
   {
-    name: "Web Development Bootcamp",
+    name: "Forentend Development",
     url: "https://example.com/cert2",
   },
   {
-    name: "Advanced React Course",
-    url: "https://example.com/cert2",
-  },
-  {
-    name: "Advanced React Course",
-    url: "https://example.com/cert2",
+    name: "Typescript Language",
+    url: "https://res.cloudinary.com/total-typescript/image/upload/v1732639169/certificate/d8d7574b-c2aa-4193-a06a-eb4366eb37f6/beginners-typescript.png",
   },
 ];
 
 const projects = [
   {
-    title: "Next Auth Exapmle",
-    sourceCode: "https://github.com/username/project1",
-    demo: "https://project1-demo.com",
+    title: "Ecommerce Application",
+    sourceCode: "https://github.com/shemaikuzwe/Ecommerce",
+    demo: "https://urban-deals-shop.vercel.app/",
   },
   {
-    title: "Next Auth Exapmle",
-    sourceCode: "https://github.com/username/project2",
-    demo: "https://project2-demo.com",
+    title: "Code Copilot Chat bot",
+    sourceCode: "https://github.com/Ikuzweshema/code_copilot",
+    demo: "https://code-copilot.vercel.app/",
   },
   {
-    title: "Next Auth Exapmle",
-    sourceCode: "https://github.com/username/project2",
-    demo: "https://project2-demo.com",
+    title: "Authentication App",
+    sourceCode: "https://github.com/Ikuzweshema/next-auth-example",
+    demo: "https://nextauthappexample.vercel.app/",
   },
   {
     title: "Next Auth Exapmle",
