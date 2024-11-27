@@ -8,7 +8,7 @@ const tools = [
   {
     name: "Next Js Framework",
     icon: <NextJsIcon size={26} />,
-    url: "https://www.python.org",
+    url: "https://nextjs.org/",
   },
   {
     name: "React Js Library",
@@ -31,20 +31,20 @@ const tools = [
 const certificates = [
   {
     name: "Backend Development",
-    url: "https://www.freecodecamp.org/certification/_elisa_/back-end-development-and-apis",
+    url: "https://www.freecodecamp.org/certification/ikuzweshemaelie/back-end-development-and-apis",
   },
 
   {
-    name: "Javascript Algorithms",
-    url: "https://www.freecodecamp.org/certification/_elisa_/javascript-algorithms-and-data-structures-v8",
+    name: "Javascript And  Algorithms",
+    url: "https://www.freecodecamp.org/certification/ikuzweshemaelie/javascript-algorithms-and-data-structures-v8",
   },
   {
     name: "Forentend Development",
-    url: "https://example.com/cert2",
+    url: "https://www.freecodecamp.org/certification/ikuzweshemaelie/front-end-development-libraries",
   },
   {
-    name: "Typescript Language",
-    url: "https://res.cloudinary.com/total-typescript/image/upload/v1732639169/certificate/d8d7574b-c2aa-4193-a06a-eb4366eb37f6/beginners-typescript.png",
+    name: "Web Design",
+    url: "https://www.freecodecamp.org/certification/ikuzweshemaelie/responsive-web-design",
   },
 ];
 

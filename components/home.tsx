@@ -22,17 +22,17 @@ export default function Home() {
       <div className="relative z-10 w-full max-w-4xl mx-auto text-center">
         <div className="mb-12">
           <Image
-            src="https://github.com/Ikuzweshema.png"
+            src="https://github.com/shemaikuzwe.png"
             alt="Profile Picture"
             width={240}
             height={220}
             className="rounded-full mx-auto mb-2 border-2 border-gray-700 shadow-lg"
           />
-          <h1 className="text-4xl font-bold mb-2 tracking-tight text-gray-300">Shema Elisa</h1>
-          <p className="text-xl  text-gray-400">
-            Full Stack Development With Next js And Typescript.
-          </p>
-          <p className="text-xl text-gray-400"> I Live in kigali,Rwanda</p>
+          <h1 className="text-4xl font-bold mb-2 tracking-tight text-gray-300">Shema Elie</h1>
+          <i className="text-xl  text-gray-400">
+            Full Stack Developer With Next js And Typescript.
+          </i>
+          <p className="text-xl text-gray-400"> <i>I live in kigali,Rwanda</i></p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-5">
           <div>
@@ -44,6 +44,7 @@ export default function Home() {
                 <li key={index} className="text-sm">
                   <div className="flex justify-center space-x-4 mt-1">
                     <Link
+                    target="blank"
                       href={project.demo}
                       className="inline-flex items-center text-gray-300 hover:text-gray-100 transition-colors duration-300"
                     >
@@ -51,6 +52,7 @@ export default function Home() {
                       <span>{project.title}</span>
                     </Link>
                     <Link
+                       target="blank"
                       href={project.sourceCode}
                       className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300"
                     >
@@ -70,6 +72,7 @@ export default function Home() {
               {certificates.map((cert, index) => (
                 <li key={index} className="text-sm">
                   <Link
+                    target="blank"
                     href={cert.url}
                     className="inline-flex  text-gray-300 hover:text-gray-100 transition-colors duration-300"
                   >
@@ -88,6 +91,7 @@ export default function Home() {
               {tools.map((tool, index) => (
                 <li key={index}>
                   <Link
+                    target="blank"
                     href={tool.url}
                     className=" flex space-x-1 text-sm  text-gray-300 hover:text-gray-100 transition-colors duration-300"
                   >
