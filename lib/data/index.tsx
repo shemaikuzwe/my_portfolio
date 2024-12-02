@@ -4,7 +4,6 @@ import {
   ReactIcon,
   TypeScriptIcon,
 } from "@/components/icons";
-import { url } from "inspector";
 const tools = [
   {
     name: "Next Js Framework",
@@ -39,7 +38,7 @@ const certificates = [
     name: "Javascript And  Algorithms",
     url: "https://www.freecodecamp.org/certification/ikuzweshemaelie/javascript-algorithms-and-data-structures-v8",
   },{
-    name:"Typscript",
+    name:"Typescript",
     url:"https://res.cloudinary.com/total-typescript/image/upload/v1733172700/certificate/9a987e1a-4e58-4d50-9554-72f47ab14367/solving-typescript-errors.png"
   },
   {

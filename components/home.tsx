@@ -68,7 +68,7 @@ export default function Home() {
             <h2 className="text-2xl font-semibold mb-4 text-gray-300">
               Certificates
             </h2>
-            <ul className="space-y-2 flex flex-col ">
+            <ul className="space-y-1 flex flex-col ">
               {certificates.map((cert, index) => (
                 <li key={index} className="text-sm">
                   <Link
