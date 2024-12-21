@@ -7,7 +7,7 @@ import SocialMedias from "./social-medias";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white p-5 flex flex-col items-center justify-between relative overflow-auto">
+    <div className="bg-black text-white p-5 flex flex-col items-center justify-between h-full">
       <div
         className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black"
         style={{

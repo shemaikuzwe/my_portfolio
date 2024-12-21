@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.className} antialiased overflow-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.className} antialiased overflow-hidden h-full`}
       >
         {children}
       </body>
