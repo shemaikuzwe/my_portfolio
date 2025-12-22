@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <div className="dark min-h-screen bg-black text-white relative">
       <div
-        className="fixed inset-0 bg-gradient-to-br from-gray-900 to-black z-0"
+        className="fixed inset-0 bg-linear-to-br from-gray-900 to-black z-0"
         style={{
           transition: "background-position 0.3s ease-out",
         }}
@@ -65,7 +65,7 @@ export default function Home() {
             {projects.map((project, index) => (
               <Card
                 key={index}
-                className="overflow-hidden hover:shadow-lg transition-shadow bg-gray-900/50 border-gray-800 backdrop-blur text-gray-100"
+                className="overflow-hidden hover:shadow-lg transition-shadow bg-gray-900/50 border-gray-800 backdrop-blur-sm text-gray-100"
               >
                 <div className="h-48 w-full bg-black/40 flex items-center justify-center">
                   {/* Placeholder for project image */}
@@ -146,7 +146,7 @@ export default function Home() {
           className="w-full py-20 px-5 text-center max-w-4xl mx-auto mb-20"
         >
           <h2 className="text-3xl font-bold mb-8 text-gray-100">Contact Me</h2>
-          <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 shadow-sm">
+          <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 shadow-xs">
             <SocialMedias />
           </div>
         </section>

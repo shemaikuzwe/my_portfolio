@@ -12,7 +12,7 @@ export default function soSocialMedias() {
           href="https://x.com/Shemaelie97"
           className="hover:text-gray-200 text-sm hover:underline  transition-colors duration-300"
         >
-          Twitter
+          X
         </Link>
       </div>
       <div className="flex items-center gap-2 text-gray-400 ">
@@ -43,7 +43,7 @@ export default function soSocialMedias() {
           href="tel:+250786229031"
           className="hover:text-gray-200 text-sm hover:underline  transition-colors duration-300"
         >
-          0786229031
+          +250786229031
         </Link>
       </div>
       <div className="flex items-center gap-2 text-gray-400 ">
