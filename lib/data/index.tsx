@@ -28,29 +28,6 @@ const tools = [
   },
 ];
 
-const certificates = [
-  {
-    name: "Backend Development",
-    url: "https://www.freecodecamp.org/certification/ikuzweshemaelie/back-end-development-and-apis",
-  },
-
-  {
-    name: "Javascript And  Algorithms",
-    url: "https://www.freecodecamp.org/certification/ikuzweshemaelie/javascript-algorithms-and-data-structures-v8",
-  },{
-    name:"Typescript",
-    url:"https://res.cloudinary.com/total-typescript/image/upload/v1733172700/certificate/9a987e1a-4e58-4d50-9554-72f47ab14367/solving-typescript-errors.png"
-  },
-  {
-    name: "Forentend Development",
-    url: "https://www.freecodecamp.org/certification/ikuzweshemaelie/front-end-development-libraries",
-  },
-  {
-    name: "Web Design",
-    url: "https://www.freecodecamp.org/certification/ikuzweshemaelie/responsive-web-design",
-  },
-];
-
 const projects = [
   {
     title: "Ecommerce Application",
@@ -74,4 +51,4 @@ const projects = [
   },
 ];
 
-export { projects, certificates, tools };
+export { projects, tools };
