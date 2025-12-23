@@ -27,7 +27,6 @@ export const metadata: Metadata = {
   },
 };
 
-import Nav from "@/components/nav";
 import { TooltipProvider } from "@/components/ui/tooltip";
 // ... imports
 
@@ -41,10 +40,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.className} antialiased h-full`}
       >
-        <TooltipProvider>
-          <Nav />
-        </TooltipProvider>
-        {children}
+        <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>
   );
