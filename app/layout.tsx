@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   description:
     "IKUZWE SHEMA Elie a Fullstack Developer in Typescript,Go,Python",
   icons: {
-    icon: "/favicon-96x96.png",
-    apple: "/apple-touch-icon.png",
+    icon: "https://github.com/shemaikuzwe.png",
+    apple: "https://github.com/shemaikuzwe.png",
   },
 };
 
