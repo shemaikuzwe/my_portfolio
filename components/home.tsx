@@ -1,17 +1,41 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Github, ExternalLink } from "lucide-react";
 import { projects, tools } from "@/lib/data";
 import SocialMedias from "./social-medias";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { motion, Variants } from "framer-motion";
+
+const sectionVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+};
 
 export default function Home() {
   return (
@@ -27,8 +51,11 @@ export default function Home() {
 
       <div className="relative z-10 flex flex-col items-center">
         {/* Hero Section */}
-        <section
+        <motion.section
           id="home"
+          initial="hidden"
+          whileInView="visible"
+          variants={sectionVariants}
           className="w-full min-h-screen flex flex-col items-center justify-center p-5 text-center"
         >
           <div className="max-w-4xl mx-auto">
@@ -41,7 +68,7 @@ export default function Home() {
                 className="rounded-full mx-auto mb-6 border-4 border-gray-700 shadow-2xl"
               />
               <h1 className="text-3xl font-bold mb-4 tracking-tight text-gray-100">
-               Ikuzwe Shema Elie
+                Ikuzwe Shema Elie
               </h1>
               <p className="text-xl text-gray-300 font-medium mb-2">
                 Full Stack Developer With Typescript,Go,Python.
@@ -51,82 +78,102 @@ export default function Home() {
               </p>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Projects Section */}
-        <section
+        <motion.section
           id="projects"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ margin: "-100px" }}
+          variants={sectionVariants}
           className="w-full py-20 px-5 max-w-6xl mx-auto space-y-10"
         >
           <h2 className="text-3xl font-bold text-center mb-10 text-gray-100">
             Projects
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             {projects.map((project, index) => (
-              <Card
-                key={index}
-                className="overflow-hidden hover:shadow-lg transition-shadow bg-gray-900/50 border-gray-800 backdrop-blur-sm text-gray-100"
-              >
-                <div className="h-48 w-full bg-black/40 flex items-center justify-center">
-                  {/* Placeholder for project image */}
-                  <span className="text-gray-600 text-4xl font-bold">
-                    Project
-                  </span>
-                </div>
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <CardTitle className="text-lg text-gray-100">
-                      {project.title}
-                    </CardTitle>
-                    <Badge
-                      variant="secondary"
-                      className="bg-gray-800 text-gray-300 hover:bg-gray-700"
-                    >
-                      Personal
-                    </Badge>
+              <motion.div key={index} variants={itemVariants}>
+                <Card className="overflow-hidden hover:shadow-lg transition-shadow bg-gray-900/50 border-gray-800 backdrop-blur-sm text-gray-100 h-full flex flex-col">
+                  <div className="h-48 w-full bg-black/40 flex items-center justify-center shrink-0">
+                    {/* Placeholder for project image */}
+                    <span className="text-gray-600 text-4xl font-bold">
+                      Project
+                    </span>
                   </div>
-                </CardHeader>
-                <CardFooter className="flex justify-between">
-                  <Link
-                    target="_blank"
-                    href={project.demo}
-                    className="inline-flex items-center text-sm font-medium hover:text-blue-400 transition-colors text-gray-300"
-                  >
-                    <ExternalLink size={16} className="mr-2" />
-                    View
-                  </Link>
-                  <Link
-                    target="_blank"
-                    href={project.sourceCode}
-                    className="inline-flex items-center text-sm font-medium hover:text-blue-400 transition-colors text-gray-300"
-                  >
-                    <Github size={16} className="mr-2" />
-                    Source Code
-                  </Link>
-                </CardFooter>
-              </Card>
+                  <CardHeader>
+                    <div className="flex justify-between items-start">
+                      <CardTitle className="text-lg text-gray-100">
+                        {project.title}
+                      </CardTitle>
+                      <Badge
+                        variant="secondary"
+                        className="bg-gray-800 text-gray-300 hover:bg-gray-700"
+                      >
+                        Personal
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <div className="grow"></div>
+                  <CardFooter className="flex justify-between mt-auto">
+                    <Link
+                      target="_blank"
+                      href={project.demo}
+                      className="inline-flex items-center text-sm font-medium hover:text-blue-400 transition-colors text-gray-300"
+                    >
+                      <ExternalLink size={16} className="mr-2" />
+                      View
+                    </Link>
+                    <Link
+                      target="_blank"
+                      href={project.sourceCode}
+                      className="inline-flex items-center text-sm font-medium hover:text-blue-400 transition-colors text-gray-300"
+                    >
+                      <Github size={16} className="mr-2" />
+                      Source Code
+                    </Link>
+                  </CardFooter>
+                </Card>
+              </motion.div>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
         {/* My Stacks Section */}
-        <section
+        <motion.section
           id="my-stacks"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ margin: "-100px" }}
+          variants={sectionVariants}
           className="w-full py-20 px-5 max-w-4xl mx-auto bg-gray-900/30 rounded-3xl my-10 border border-gray-800"
         >
           <h2 className="text-3xl font-bold text-center mb-10 text-gray-100">
             My Stack
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ margin: "-100px" }}
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"
+          >
             {tools.map((tool, index) => (
-              <div
+              <motion.div
                 key={index}
+                variants={itemVariants}
                 className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-gray-600 transition-colors group"
               >
                 <Link
                   target="_blank"
                   href={tool.url}
-                  className="flex flex-col items-center gap-3"
+                  className="flex flex-col items-center gap-3 w-full"
                 >
                   <div className="text-gray-400 group-hover:text-blue-400 transition-colors">
                     {tool.icon}
@@ -135,21 +182,24 @@ export default function Home() {
                     {tool.name}
                   </span>
                 </Link>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
         {/* Contact Section */}
-        <section
+        <motion.section
           id="contact"
+          initial="hidden"
+          whileInView="visible"
+          variants={sectionVariants}
           className="w-full py-20 px-5 text-center max-w-4xl mx-auto mb-20"
         >
           <h2 className="text-3xl font-bold mb-8 text-gray-100">Contact Me</h2>
           <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 shadow-xs">
             <SocialMedias />
           </div>
-        </section>
+        </motion.section>
       </div>
     </div>
   );
