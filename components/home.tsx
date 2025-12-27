@@ -16,13 +16,15 @@ import {
   Briefcase,
   Cpu,
   Mail,
+  UserSquare2,
 } from "lucide-react";
 import { projects, tools } from "@/lib/data";
-import SocialMedias from "./social-medias";
+
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
+import About from "./about";
 
 const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -170,10 +172,10 @@ export default function Home() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <TabsTrigger
-                    value="contact"
+                    value="about"
                     className="relative p-3 rounded-full text-white/50 hover:text-white transition-colors"
                   >
-                    {activeTab === "contact" && (
+                    {activeTab === "about" && (
                       <motion.div
                         layoutId="active-tab"
                         className="absolute inset-0 bg-white/10 rounded-full"
@@ -184,10 +186,10 @@ export default function Home() {
                         }}
                       />
                     )}
-                    <Mail size={20} className="relative z-10" />
+                    <UserSquare2 size={20} className="relative z-10" />
                   </TabsTrigger>
                 </TooltipTrigger>
-                <TooltipContent>Contact</TooltipContent>
+                <TooltipContent>About</TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </TabsList>
@@ -241,38 +243,51 @@ export default function Home() {
             variants={sectionVariants}
             className="w-full py-20 px-5 max-w-6xl mx-auto space-y-10"
           >
-            <h2 className="text-3xl font-bold text-center mb-10 text-gray-100">
+            <h2 className="text-2xl font-bold text-center mb-10 text-gray-100">
               Projects
             </h2>
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
             >
               {projects.map((project, index) => (
                 <motion.div key={index} variants={itemVariants}>
-                  <Card className="overflow-hidden hover:shadow-lg transition-shadow bg-gray-900/50 border-gray-800 backdrop-blur-sm text-gray-100 h-full flex flex-col">
-                    <div className="h-48 w-full bg-black/40 flex items-center justify-center shrink-0">
-                      {/* Placeholder for project image */}
-                      <span className="text-gray-600 text-4xl font-bold">
-                        Project
-                      </span>
+                  <Card className="max-h-90 overflow-hidden hover:shadow-lg transition-shadow bg-gray-900/50 border-gray-800 backdrop-blur-sm text-gray-100 h-full flex flex-col">
+                    <div className="h-52 w-full bg-black/40 flex items-center justify-center shrink-0">
+                      {project.image ? (
+                        <Image src={project.image} alt={project.title} width={400} height={300} />
+                      ) : (
+                        <span className="text-gray-600 text-4xl font-bold">
+                          Project
+                        </span>
+                      )}
                     </div>
                     <CardHeader>
                       <div className="flex justify-between items-start">
-                        <CardTitle className="text-lg text-gray-100">
-                          {project.title}
+                        <CardTitle>
+                          <h2 className="text-lg text-gray-100">
+                            {project.title}
+                          </h2>
+                          {project.description && (
+                            <p className="text-sm text-gray-400">
+                              {project.description}
+                            </p>
+                          )}
                         </CardTitle>
-                        <Badge
-                          variant="secondary"
-                          className="bg-gray-800 text-gray-300 hover:bg-gray-700"
-                        >
-                          Personal
-                        </Badge>
+
+                        {project.personal && (
+                          <Badge
+                            variant="secondary"
+                            className="bg-gray-800 text-gray-300 hover:bg-gray-700"
+                          >
+                            Personal
+                          </Badge>
+                        )}
                       </div>
                     </CardHeader>
-                    <div className="grow"></div>
+                    
                     <CardFooter className="flex justify-between mt-auto">
                       <Link
                         target="_blank"
@@ -282,14 +297,16 @@ export default function Home() {
                         <ExternalLink size={16} className="mr-2" />
                         View
                       </Link>
-                      <Link
-                        target="_blank"
-                        href={project.sourceCode}
-                        className="inline-flex items-center text-sm font-medium hover:text-blue-400 transition-colors text-gray-300"
-                      >
-                        <Github size={16} className="mr-2" />
-                        Source Code
-                      </Link>
+                      {project.sourceCode && (
+                        <Link
+                          target="_blank"
+                          href={project.sourceCode}
+                          className="inline-flex items-center text-sm font-medium hover:text-blue-400 transition-colors text-gray-300"
+                        >
+                          <Github size={16} className="mr-2" />
+                          Source Code
+                        </Link>
+                      )}
                     </CardFooter>
                   </Card>
                 </motion.div>
@@ -306,7 +323,7 @@ export default function Home() {
             variants={sectionVariants}
             className="w-full py-20 px-5 max-w-4xl mx-auto bg-gray-900/30 rounded-3xl my-10 border border-gray-800"
           >
-            <h2 className="text-3xl font-bold text-center mb-10 text-gray-100">
+            <h2 className="text-2xl font-bold text-center mb-10 text-gray-100">
               My Stack
             </h2>
             <motion.div
@@ -320,14 +337,22 @@ export default function Home() {
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-gray-600 transition-colors group"
+                  className="flex flex-col justify-center p-4 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-gray-600 transition-colors group"
                 >
+                  <div className="flex justify-end  text-end">
+                    <Badge
+                      variant={"secondary"}
+                      className="bg-muted-foreground"
+                    >
+                      {tool.score}
+                    </Badge>
+                  </div>
                   <Link
                     target="_blank"
                     href={tool.url}
                     className="flex flex-col items-center gap-3 w-full"
                   >
-                    <div className="text-gray-400 group-hover:text-blue-400 transition-colors">
+                    <div className="text-gray-400 flex  items-center group-hover:text-blue-400 transition-colors">
                       {tool.icon}
                     </div>
                     <span className="font-medium text-sm text-center text-gray-300">
@@ -338,21 +363,15 @@ export default function Home() {
               ))}
             </motion.div>
           </motion.section>
-
-          {/* Contact Section */}
+        
           <motion.section
-            id="contact"
+            id="about"
             initial="hidden"
             whileInView="visible"
             variants={sectionVariants}
             className="w-full py-20 px-5 text-center max-w-4xl mx-auto mb-20"
           >
-            <h2 className="text-3xl font-bold mb-8 text-gray-100">
-              Contact Me
-            </h2>
-            <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 shadow-xs">
-              <SocialMedias />
-            </div>
+            <About />
           </motion.section>
         </div>
       </Tabs>
