@@ -1,77 +1,97 @@
 import {
+  GoIcon,
+  NestJS,
   NextJsIcon,
   PrismaIcon,
+  PythonIcon,
   ReactIcon,
   TypeScriptIcon,
 } from "@/components/icons";
+import { Experience } from "../types";
 const tools = [
+  {
+    name: "Typescript",
+    icon: <TypeScriptIcon size={20} />,
+    url: "https://www.typescriptlang.org/",
+    score: 90,
+  },
+  {
+    name: "Python",
+    icon: <PythonIcon size={20} />,
+    url: "https://www.python.org/",
+    score: 85,
+  },
+  {
+    name: "Go",
+    icon: <GoIcon size={26} />,
+    url: "https://go.dev/",
+    score: 80,
+  },
   {
     name: "Next Js Framework",
     icon: <NextJsIcon size={26} />,
     url: "https://nextjs.org/",
+    score: 95,
   },
   {
     name: "React Js Library",
     icon: <ReactIcon className="animate-spin" />,
     url: "https://react.dev/",
+    score: 95,
+  },
+  {
+    name: "Nest js Framework",
+    icon: <NestJS size={26} />,
+    url: "https://nestjs.com/",
+    score: 90,
   },
   {
     name: "Prisma  ORM",
     icon: <PrismaIcon size={27} />,
     url: "https://www.prisma.io/",
-  },
-
-  {
-    name: "Typescript Language",
-    icon: <TypeScriptIcon size={20} />,
-    url: "https://www.typescriptlang.org/",
-  },
-];
-
-const certificates = [
-  {
-    name: "Backend Development",
-    url: "https://www.freecodecamp.org/certification/ikuzweshemaelie/back-end-development-and-apis",
-  },
-
-  {
-    name: "Javascript And  Algorithms",
-    url: "https://www.freecodecamp.org/certification/ikuzweshemaelie/javascript-algorithms-and-data-structures-v8",
-  },{
-    name:"Typescript",
-    url:"https://res.cloudinary.com/total-typescript/image/upload/v1733172700/certificate/9a987e1a-4e58-4d50-9554-72f47ab14367/solving-typescript-errors.png"
-  },
-  {
-    name: "Forentend Development",
-    url: "https://www.freecodecamp.org/certification/ikuzweshemaelie/front-end-development-libraries",
-  },
-  {
-    name: "Web Design",
-    url: "https://www.freecodecamp.org/certification/ikuzweshemaelie/responsive-web-design",
+    score: 95,
   },
 ];
 
 const projects = [
   {
+    title: "LMS",
+    demo: "https://lms.rw",
+    description: "Loan Management System",
+  },
+  {
     title: "Ecommerce Application",
     sourceCode: "https://github.com/shemaikuzwe/Ecommerce",
     demo: "https://urban-deals-shop.vercel.app/",
+    personal: true,
+    image: "/images/ecommerce.png",
   },
   {
-    title: "Code Copilot Chat bot",
+    title: "Chat Ai",
     sourceCode: "https://github.com/Ikuzweshema/code_copilot",
+    description: "Ai Applicaiton for accessing all models",
     demo: "https://code-copilot.vercel.app/",
+    personal: true,
   },
   {
-    title: "Authentication App",
-    sourceCode: "https://github.com/Ikuzweshema/next-auth-example",
-    demo: "https://nextauthappexample.vercel.app/",
-  },
-  {
-    title: "Next Auth Exapmle",
-    sourceCode: "https://github.com/username/project2",
-    demo: "https://project2-demo.com",
+    title: "Planify",
+    description: "An application for planning and organizing tasks",
+    demo: "https://planify2.vercel.app/",
+    personal: true,
+    image: "/images/planify.png",
   },
 ];
-
-export { projects, certificates, tools };
+const experiences: Experience[] = [
+  {
+    role: "Full Stack Developer",
+    company: "Scripty Labs",
+    location: "Kigali,Rwanda",
+    period: "2025 - Present",
+    highlights: [
+      "Implemented core business logic to support key product features and operations",
+      "Learned and applied server management practices to ensure reliable application performance",
+      "Implemented new features and improved existing ones to enhance user experience",
+    ],
+  },
+];
+export { projects, tools, experiences };

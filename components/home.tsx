@@ -1,112 +1,380 @@
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
-import { Github, ExternalLink } from "lucide-react";
-import { certificates, projects, tools } from "@/lib/data";
-import SocialMedias from "./social-medias";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+  TooltipProvider,
+} from "@/components/ui/tooltip";
+import {
+  Github,
+  ExternalLink,
+  Home as HomeIcon,
+  Briefcase,
+  Cpu,
+  Mail,
+  UserSquare2,
+} from "lucide-react";
+import { projects, tools } from "@/lib/data";
+
+import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { motion, Variants } from "framer-motion";
+import { useEffect, useState } from "react";
+import About from "./about";
+
+const sectionVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+};
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState("home");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["home", "projects", "my-stacks", "contact"];
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveTab(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial state
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    const element = document.getElementById(value);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <div className="bg-black text-white p-5 flex flex-col items-center justify-between h-full">
-      <div
-        className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black"
-        style={{
-          transition: "background-position 0.3s ease-out",
-        }}
+    <div className="dark min-h-screen bg-black text-white relative">
+      <Tabs
+        value={activeTab}
+        onValueChange={handleTabChange}
+        className="w-full"
       >
-        <div
-          className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMTExIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiMyMjIiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=')]
-            opacity-20"
-        ></div>
-      </div>
-      <div className="relative z-10 w-full max-w-4xl mx-auto text-center">
-        <div className="mb-12">
-          <Image
-            src="https://github.com/shemaikuzwe.png"
-            alt="Profile Picture"
-            width={240}
-            height={220}
-            className="rounded-full mx-auto mb-2 border-2 border-gray-700 shadow-lg"
-          />
-          <h1 className="text-4xl font-bold mb-2 tracking-tight text-gray-300">Shema Elie</h1>
-          <i className="text-xl  text-gray-400">
-            Full Stack Developer With Next js And Typescript.
-          </i>
-          <p className="text-xl text-gray-400"> <i>I live in kigali,Rwanda</i></p>
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+          <TabsList className="flex items-center gap-2 p-2 bg-black/40 backdrop-blur-md border border-white/10 rounded-full shadow-2xl h-auto w-auto">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <TabsTrigger
+                    value="home"
+                    className="relative p-3 rounded-full text-white/50 hover:text-white transition-colors"
+                  >
+                    {activeTab === "home" && (
+                      <motion.div
+                        layoutId="active-tab"
+                        className="absolute inset-0 bg-white/10 rounded-full"
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                    <HomeIcon size={20} className="relative z-10" />
+                  </TabsTrigger>
+                </TooltipTrigger>
+                <TooltipContent>Home</TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <TabsTrigger
+                    value="projects"
+                    className="relative p-3 rounded-full text-white/50 hover:text-white transition-colors"
+                  >
+                    {activeTab === "projects" && (
+                      <motion.div
+                        layoutId="active-tab"
+                        className="absolute inset-0 bg-white/10 rounded-full"
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                    <Briefcase size={20} className="relative z-10" />
+                  </TabsTrigger>
+                </TooltipTrigger>
+                <TooltipContent>Projects</TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <TabsTrigger
+                    value="my-stacks"
+                    className="relative p-3 rounded-full text-white/50 hover:text-white transition-colors"
+                  >
+                    {activeTab === "my-stacks" && (
+                      <motion.div
+                        layoutId="active-tab"
+                        className="absolute inset-0 bg-white/10 rounded-full"
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                    <Cpu size={20} className="relative z-10" />
+                  </TabsTrigger>
+                </TooltipTrigger>
+                <TooltipContent>My Stack</TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <TabsTrigger
+                    value="about"
+                    className="relative p-3 rounded-full text-white/50 hover:text-white transition-colors"
+                  >
+                    {activeTab === "about" && (
+                      <motion.div
+                        layoutId="active-tab"
+                        className="absolute inset-0 bg-white/10 rounded-full"
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                    <UserSquare2 size={20} className="relative z-10" />
+                  </TabsTrigger>
+                </TooltipTrigger>
+                <TooltipContent>About</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </TabsList>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-5">
-          <div>
-            <h2 className="text-2xl font-semibold mb-4 text-gray-300">
+        <div
+          className="fixed inset-0 bg-linear-to-br from-gray-900 to-black z-0"
+          style={{
+            transition: "background-position 0.3s ease-out",
+          }}
+        >
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMTExIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiMyMjIiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=')] opacity-20"></div>
+        </div>
+
+        <div className="relative z-10 flex flex-col items-center">
+          {/* Hero Section */}
+          <motion.section
+            id="home"
+            initial="hidden"
+            whileInView="visible"
+            variants={sectionVariants}
+            className="w-full min-h-screen flex flex-col items-center justify-center p-5 text-center"
+          >
+            <div className="max-w-4xl mx-auto">
+              <div className="mb-8">
+                <Image
+                  src="https://github.com/shemaikuzwe.png"
+                  alt="Profile Picture"
+                  width={200}
+                  height={200}
+                  className="rounded-full mx-auto mb-6 border-4 border-gray-700 shadow-2xl"
+                />
+                <h1 className="text-3xl font-bold mb-4 tracking-tight text-gray-100">
+                  Ikuzwe Shema Elie
+                </h1>
+                <p className="text-xl text-gray-300 font-medium mb-2">
+                  Full Stack Developer With Typescript,Go,Python.
+                </p>
+                <p className="text-lg text-gray-400 italic">
+                  I live in Kigali, Rwanda
+                </p>
+              </div>
+            </div>
+          </motion.section>
+
+          {/* Projects Section */}
+          <motion.section
+            id="projects"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ margin: "-100px" }}
+            variants={sectionVariants}
+            className="w-full py-20 px-5 max-w-6xl mx-auto space-y-10"
+          >
+            <h2 className="text-2xl font-bold text-center mb-10 text-gray-100">
               Projects
             </h2>
-            <ul className="space-y-2">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+            >
               {projects.map((project, index) => (
-                <li key={index} className="text-sm">
-                  <div className="flex justify-center space-x-4 mt-1">
-                    <Link
-                    target="blank"
-                      href={project.demo}
-                      className="inline-flex items-center text-gray-300 hover:text-gray-100 transition-colors duration-300"
-                    >
-                      <ExternalLink size={14} className="mr-1" />
-                      <span>{project.title}</span>
-                    </Link>
-                    <Link
-                       target="blank"
-                      href={project.sourceCode}
-                      className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300"
-                    >
-                      <Github size={14} className="mr-1" />
-                      <span>Refrence</span>
-                    </Link>
-                  </div>
-                </li>
+                <motion.div key={index} variants={itemVariants}>
+                  <Card className="max-h-90 overflow-hidden hover:shadow-lg transition-shadow bg-gray-900/50 border-gray-800 backdrop-blur-sm text-gray-100 h-full flex flex-col">
+                    <div className="h-52 w-full bg-black/40 flex items-center justify-center shrink-0">
+                      {project.image ? (
+                        <Image src={project.image} alt={project.title} width={400} height={300} />
+                      ) : (
+                        <span className="text-gray-600 text-4xl font-bold">
+                          Project
+                        </span>
+                      )}
+                    </div>
+                    <CardHeader>
+                      <div className="flex justify-between items-start">
+                        <CardTitle>
+                          <h2 className="text-lg text-gray-100">
+                            {project.title}
+                          </h2>
+                          {project.description && (
+                            <p className="text-sm text-gray-400">
+                              {project.description}
+                            </p>
+                          )}
+                        </CardTitle>
+
+                        {project.personal && (
+                          <Badge
+                            variant="secondary"
+                            className="bg-gray-800 text-gray-300 hover:bg-gray-700"
+                          >
+                            Personal
+                          </Badge>
+                        )}
+                      </div>
+                    </CardHeader>
+                    
+                    <CardFooter className="flex justify-between mt-auto">
+                      <Link
+                        target="_blank"
+                        href={project.demo}
+                        className="inline-flex items-center text-sm font-medium hover:text-blue-400 transition-colors text-gray-300"
+                      >
+                        <ExternalLink size={16} className="mr-2" />
+                        View
+                      </Link>
+                      {project.sourceCode && (
+                        <Link
+                          target="_blank"
+                          href={project.sourceCode}
+                          className="inline-flex items-center text-sm font-medium hover:text-blue-400 transition-colors text-gray-300"
+                        >
+                          <Github size={16} className="mr-2" />
+                          Source Code
+                        </Link>
+                      )}
+                    </CardFooter>
+                  </Card>
+                </motion.div>
               ))}
-            </ul>
-          </div>
-          <div>
-            <h2 className="text-2xl font-semibold mb-4 text-gray-300">
-              Certificates
+            </motion.div>
+          </motion.section>
+
+          {/* My Stacks Section */}
+          <motion.section
+            id="my-stacks"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ margin: "-100px" }}
+            variants={sectionVariants}
+            className="w-full py-20 px-5 max-w-4xl mx-auto bg-gray-900/30 rounded-3xl my-10 border border-gray-800"
+          >
+            <h2 className="text-2xl font-bold text-center mb-10 text-gray-100">
+              My Stack
             </h2>
-            <ul className="space-y-1 flex flex-col ">
-              {certificates.map((cert, index) => (
-                <li key={index} className="text-sm">
-                  <Link
-                    target="blank"
-                    href={cert.url}
-                    className="inline-flex  text-gray-300 hover:text-gray-100 transition-colors duration-300"
-                  >
-                    <ExternalLink size={14} className="mr-1" />
-                    <span>{cert.name}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h2 className="text-2xl font-semibold mb-4 text-gray-300">
-              My stack
-            </h2>
-            <ul className="space-y-2 flex flex-col items-center justify-center ">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ margin: "-100px" }}
+              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"
+            >
               {tools.map((tool, index) => (
-                <li key={index}>
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className="flex flex-col justify-center p-4 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-gray-600 transition-colors group"
+                >
+                  <div className="flex justify-end  text-end">
+                    <Badge
+                      variant={"secondary"}
+                      className="bg-muted-foreground"
+                    >
+                      {tool.score}
+                    </Badge>
+                  </div>
                   <Link
-                    target="blank"
+                    target="_blank"
                     href={tool.url}
-                    className=" flex space-x-1 text-sm  text-gray-300 hover:text-gray-100 transition-colors duration-300"
+                    className="flex flex-col items-center gap-3 w-full"
                   >
-                    {tool.icon}
-                    <span className="inline-flex items-center text-gray-300">
+                    <div className="text-gray-400 flex  items-center group-hover:text-blue-400 transition-colors">
+                      {tool.icon}
+                    </div>
+                    <span className="font-medium text-sm text-center text-gray-300">
                       {tool.name}
                     </span>
                   </Link>
-                </li>
+                </motion.div>
               ))}
-            </ul>
-          </div>
+            </motion.div>
+          </motion.section>
+        
+          <motion.section
+            id="about"
+            initial="hidden"
+            whileInView="visible"
+            variants={sectionVariants}
+            className="w-full py-20 px-5 text-center max-w-4xl mx-auto mb-20"
+          >
+            <About />
+          </motion.section>
         </div>
-      </div>
-      <SocialMedias />
+      </Tabs>
     </div>
   );
 }
