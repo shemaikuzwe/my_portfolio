@@ -60,18 +60,18 @@ const projects = [
     description: "Loan Management System",
   },
   {
+    title: "Milo Chat",
+    description: "AI Chat Application for accessing all models",
+    demo: "https://mini-chat1.vercel.app",
+    image:"/images/milochat.png",
+    personal: true,
+  },
+  {
     title: "Ecommerce Application",
     sourceCode: "https://github.com/shemaikuzwe/Ecommerce",
     demo: "https://urban-deals-shop.vercel.app/",
     personal: true,
     image: "/images/ecommerce.png",
-  },
-  {
-    title: "Chat Ai",
-    sourceCode: "https://github.com/Ikuzweshema/code_copilot",
-    description: "Ai Applicaiton for accessing all models",
-    demo: "https://code-copilot.vercel.app/",
-    personal: true,
   },
   {
     title: "Planify",
