@@ -62,7 +62,7 @@ const projects = [
   {
     title: "Milo Chat",
     description: "AI Chat Application for accessing all models",
-    demo: "https://mini-chat1.vercel.app",
+    demo: "https://milochat.app",
     image:"/images/milochat.png",
     personal: true,
   },
