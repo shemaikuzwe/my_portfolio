@@ -55,9 +55,16 @@ const tools = [
 
 const projects = [
   {
-    title: "LMS",
+    
+    title: "Scriptylabs",
+    demo: "https://scriptylabs.rw",
+    image: "/images/scriptylabs.png",
+    description: "Domains and Webhosting platform",
+  },
+  {
+    title: "Invictus",
     demo: "https://lms.rw",
-    description: "Loan Management System",
+    description: "Digital Loan Management System",
   },
   {
     title: "Milo Chat",
@@ -65,20 +72,6 @@ const projects = [
     demo: "https://milochat.app",
     image:"/images/milochat.png",
     personal: true,
-  },
-  {
-    title: "Ecommerce Application",
-    sourceCode: "https://github.com/shemaikuzwe/Ecommerce",
-    demo: "https://urban-deals-shop.vercel.app/",
-    personal: true,
-    image: "/images/ecommerce.png",
-  },
-  {
-    title: "Planify",
-    description: "An application for planning and organizing tasks",
-    demo: "https://planify2.vercel.app/",
-    personal: true,
-    image: "/images/planify.png",
   },
 ];
 const experiences: Experience[] = [
