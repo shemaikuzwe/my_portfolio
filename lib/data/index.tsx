@@ -59,12 +59,19 @@ const projects = [
     title: "Scriptylabs",
     demo: "https://scriptylabs.rw",
     image: "/images/scriptylabs.png",
-    description: "Domains and Webhosting platform",
+    description: "Domains and Hosting platform",
   },
   {
     title: "Invictus",
-    demo: "https://lms.rw",
+    demo: "https://invictus.rw",
+    image:"/images/invictus.png",
     description: "Digital Loan Management System",
+  },
+  {
+    title: "Indanga",
+    demo: "https://indanga.com",
+    image: "/images/indanga2.png",
+    description:"Real estate platform"
   },
   {
     title: "Milo Chat",
