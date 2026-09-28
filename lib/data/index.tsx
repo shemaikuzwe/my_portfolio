@@ -52,8 +52,15 @@ const tools = [
     score: 95,
   },
 ];
-
-const projects = [
+type Project = {
+  title: string;
+  demo: string;
+  image: string;
+  description: string;
+  personal?: boolean;
+  sourceCode?: string;
+};
+const projects: Project[] = [
   {
     
     title: "Scriptylabs",
