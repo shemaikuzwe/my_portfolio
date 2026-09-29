@@ -10,12 +10,10 @@ import {
   TooltipProvider,
 } from "@/components/ui/tooltip";
 import {
-  Github,
   ExternalLink,
   Home as HomeIcon,
   Briefcase,
   Cpu,
-  Mail,
   UserSquare2,
 } from "lucide-react";
 import { projects, tools } from "@/lib/data";
@@ -25,6 +23,7 @@ import { Badge } from "@/components/ui/badge";
 import { motion, Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import About from "./about";
+import { GithubIcon } from "./brand-icons";
 
 const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -149,6 +148,28 @@ export default function Home() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <TabsTrigger
+                    value="about"
+                    className="relative p-3 rounded-full text-white/50 hover:text-white transition-colors"
+                  >
+                    {activeTab === "about" && (
+                      <motion.div
+                        layoutId="active-tab"
+                        className="absolute inset-0 bg-white/10 rounded-full"
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                    <UserSquare2 size={20} className="relative z-10" />
+                  </TabsTrigger>
+                </TooltipTrigger>
+                <TooltipContent>About</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <TabsTrigger
                     value="my-stacks"
                     className="relative p-3 rounded-full text-white/50 hover:text-white transition-colors"
                   >
@@ -169,28 +190,6 @@ export default function Home() {
                 <TooltipContent>My Stack</TooltipContent>
               </Tooltip>
 
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <TabsTrigger
-                    value="about"
-                    className="relative p-3 rounded-full text-white/50 hover:text-white transition-colors"
-                  >
-                    {activeTab === "about" && (
-                      <motion.div
-                        layoutId="active-tab"
-                        className="absolute inset-0 bg-white/10 rounded-full"
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 30,
-                        }}
-                      />
-                    )}
-                    <UserSquare2 size={20} className="relative z-10" />
-                  </TabsTrigger>
-                </TooltipTrigger>
-                <TooltipContent>About</TooltipContent>
-              </Tooltip>
             </TooltipProvider>
           </TabsList>
         </div>
@@ -225,7 +224,7 @@ export default function Home() {
                   Ikuzwe Shema Elie
                 </h1>
                 <p className="text-xl text-gray-300 font-medium mb-2">
-                  Full Stack Developer With Typescript,Go,Python.
+                  Full Stack Developer With Typescript,Rust,Go.
                 </p>
                 <p className="text-lg text-gray-400 italic">
                   I live in Kigali, Rwanda
@@ -303,7 +302,7 @@ export default function Home() {
                           href={project.sourceCode}
                           className="inline-flex items-center text-sm font-medium hover:text-blue-400 transition-colors text-gray-300"
                         >
-                          <Github size={16} className="mr-2" />
+                          <GithubIcon width={16} height={16} className="mr-2" />
                           Source Code
                         </Link>
                       )}
@@ -312,6 +311,17 @@ export default function Home() {
                 </motion.div>
               ))}
             </motion.div>
+          </motion.section>
+
+          
+          <motion.section
+            id="about"
+            initial="hidden"
+            whileInView="visible"
+            variants={sectionVariants}
+            className="w-full py-20 px-5 text-center max-w-4xl mx-auto mb-20"
+          >
+            <About />
           </motion.section>
 
           {/* My Stacks Section */}
@@ -364,15 +374,6 @@ export default function Home() {
             </motion.div>
           </motion.section>
         
-          <motion.section
-            id="about"
-            initial="hidden"
-            whileInView="visible"
-            variants={sectionVariants}
-            className="w-full py-20 px-5 text-center max-w-4xl mx-auto mb-20"
-          >
-            <About />
-          </motion.section>
         </div>
       </Tabs>
     </div>

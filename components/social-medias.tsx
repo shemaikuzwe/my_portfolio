@@ -1,11 +1,12 @@
-import { Github, Twitter, Linkedin, Phone, Mail } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 import Link from "next/link";
+import { GithubIcon, LinkedinIcon, XIcon } from "./brand-icons";
 export default function soSocialMedias() {
   return (
     <div className="flex justify-center space-x-6 relative z-10 w-full h-full flex-wrap">
 
       <div className="flex items-center gap-2 text-gray-400 ">
-        <Twitter size={28} />
+        <XIcon width={28} height={28} />
         <Link
           target="_blank"
           rel="noopener noreferrer"
@@ -16,18 +17,18 @@ export default function soSocialMedias() {
         </Link>
       </div>
       <div className="flex items-center gap-2 text-gray-400 ">
-        <Linkedin size={28} />
+        <LinkedinIcon width={28} height={28} />
         <Link
           target="_blank"
           rel="noopener noreferrer"
-          href="https://www.linkedin.com/in/ikuzwe-shema-elie-791b63304/"
+          href="https://www.linkedin.com/in/shemaikuzwe"
           className="hover:text-gray-200 text-sm hover:underline  transition-colors duration-300"
         >
           LinkedIn
         </Link>
       </div>
       <div className="flex  items-center gap-2 text-gray-400 ">
-        <Github size={28} className="text-pretty" />
+        <GithubIcon width={28} height={28} className="text-pretty" />
         <Link
           target="_blank"
           rel="noopener noreferrer"

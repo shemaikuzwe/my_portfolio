@@ -95,7 +95,9 @@ const experiences: Experience[] = [
     location: "Kigali,Rwanda",
     period: "2025 - Present",
     highlights: [
+      "Designed and implemented backend APIs and services using TypeScript/Node.js, NestJS, and Rust.",
       "Implemented core business logic to support key product features and operations",
+      "Built and maintained CI/CD workflows for automated testing, linting, and application deployment ensuring ZERO downtime.",
       "Learned and applied server management practices to ensure reliable application performance",
       "Implemented new features and improved existing ones to enhance user experience",
     ],
